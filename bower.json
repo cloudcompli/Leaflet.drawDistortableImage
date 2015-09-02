@@ -1,0 +1,42 @@
+{
+  "name": "leaflet-drawDistortableImage",
+  "description": "Extension to Leaflet.draw that allows drawing of Leaflet.distortableImage objects",
+  "version": "0.1.0",
+  "authors" : [
+    { "name": "Nate Emerson", "email": "nate@cloudcompli.com", "homepage": "http://cloudcompli.com" }
+  ],
+  "keywords": [
+    "javascript",
+    "leaflet",
+    "maps",
+    "client",
+    "vector",
+    "drawing",
+    "draw",
+    "image",
+    "distortableImage",
+    "rubbersheeting"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cloudcompli/Leaflet.drawDistortableImage"
+  },
+  "main": [
+    "dist/leaflet.draw-src.js",
+    "dist/leaflet.draw.css",
+    "dist/images/spritesheet-2x.png",
+    "dist/images/spritesheet.png"
+  ],
+  "ignore": [
+    "**/.*",
+    "examples",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "leaflet-dist": "0.7.x",
+    "leaflet-draw": "cloudcompli/Leaflet.draw#integrating-toolbar",
+    "leaflet-distortable": "publiclab/Leaflet.DistortableImage#master"
+  }
+}

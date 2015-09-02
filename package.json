@@ -1,0 +1,9 @@
+{
+  "name": "Leaflet.drawDistortableImage",
+  "version": "0.1.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "bower":">1.2.0"
+  }
+}
