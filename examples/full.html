@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet.draw vector editing handlers</title>
+
+    <link rel="stylesheet" href="../bower_components/leaflet-dist/leaflet.css" />
+    <link rel="stylesheet" href="../bower_components/leaflet-toolbar/dist/leaflet.toolbar.css" />
+    <link rel="stylesheet" href="../bower_components/leaflet-draw/dist/leaflet.draw.css" />
+    <link rel="stylesheet" href="../bower_components/leaflet-distortable/dist/leaflet.distortableimage.css" />
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css" />
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/leaflet-dist/leaflet.js"></script>
+    <script src="../bower_components/leaflet-toolbar/dist/leaflet.toolbar-src.js"></script>
+    <script src="../bower_components/leaflet-draw/dist/leaflet.draw-src.js"></script>
+    <script src="../bower_components/leaflet-distortable/dist/leaflet.distortableimage.js"></script>
+    <script src="../src/leaflet.drawDistortableImage.js"></script>
+</head>
+<body>
+    <div id="map" style="width: 800px; height: 600px; border: 1px solid #ccc"></div>
+
+    <script>
+        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+            map = new L.Map('map', {layers: [osm], center: new L.LatLng(51.505, -0.04), zoom: 13}),
+            drawnItems = L.featureGroup().addTo(map);
+
+        map.addControl(new L.Control.Draw({
+            edit: { featureGroup: drawnItems }
+        }));
+
+        map.on('draw:created', function(event) {
+            var layer = event.layer;
+
+            drawnItems.addLayer(layer);
+        });
+
+    </script>
+</body>
+</html>
