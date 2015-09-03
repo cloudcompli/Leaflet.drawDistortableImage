@@ -37,6 +37,6 @@
   "dependencies": {
     "leaflet-dist": "0.7.x",
     "leaflet-draw": "cloudcompli/Leaflet.draw#integrating-toolbar",
-    "leaflet-distortable": "publiclab/Leaflet.DistortableImage#0.0.23"
+    "leaflet-distortable": "publiclab/Leaflet.DistortableImage#0.0.25"
   }
 }
