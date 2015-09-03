@@ -9,7 +9,6 @@ L.drawLocal.draw.handlers.distortableimage = {
 // Add distortableimage option to L.DrawToolbar.Control
 L.DrawToolbar.Control.prototype.options.distortableimage = {};
 
-
 // Extend L.DrawToolbar.Control
 L.DrawToolbar.Control.prototype.initialize = function (options) {
     L.setOptions(this, options);
@@ -148,5 +147,3 @@ L.Draw.DistortableImage = L.Draw.Rectangle.extend({
         }
     }
 });
-
-
