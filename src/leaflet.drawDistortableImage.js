@@ -76,7 +76,7 @@ L.Draw.Control.DistortableImage = L.Draw.Control.ToolbarAction.extend({
 // Draw Control Handler (would go in a new src/draw/handler/Draw.DistortableImage.js)
 L.Draw.DistortableImage = L.Draw.Rectangle.extend({
     statics: {
-        TYPE: 'ditortableimage'
+        TYPE: 'distortableimage'
     },
 
     options: {
