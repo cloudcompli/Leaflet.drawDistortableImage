@@ -95,32 +95,44 @@ L.Draw.DistortableImage = L.Draw.Rectangle.extend({
     },
 
     initialize: function (map, options) {
+        console.log('intialized');
         // Save the type so super can fire, need to do this as cannot do this.TYPE :(
         this.type = L.Draw.DistortableImage.TYPE;
 
         this._initialLabelText = L.drawLocal.draw.handlers.distortableimage.tooltip.start;
+
+        if (options.createdEventHandler || this.options.createdEventHandler)
+        {
+            console.log('custom createdEventHandler');
+            this._createdEventHandler = options.createdEventHandler ? options.createdEventHandler : this.options.createdEventHandler;
+        }
 
         L.Draw.SimpleShape.prototype.initialize.call(this, map, options);
     },
 
     _fireCreatedEvent: function () {
         var that = this,
-            rectangle = new L.Rectangle(this._shape.getBounds(), this.options.shapeOptions).addTo(this._map),
-            popupContent = '<div><label for="imgUrlInput">Enter URL for image</label><input type="text" id="imgUrlInput" name="imgUrlInput"><input type="submit" id="imgUrlSubmit"></div>';
+            rectangle = new L.Rectangle(this._shape.getBounds(), this.options.shapeOptions).addTo(this._map);
 
         this._tempRect = rectangle;
 
-        rectangle.bindPopup(popupContent).openPopup();
+        if (this._createdEventHandler)
+        {
+            this._createdEventHandler.call(this);
+        } else {
+            var popupContent = '<div><label for="imgUrlInput">Enter URL for image</label><input type="text" id="imgUrlInput" name="imgUrlInput"><input type="submit" id="imgUrlSubmit"></div>';
+            rectangle.bindPopup(popupContent).openPopup();
 
-        document.getElementById('imgUrlSubmit').onclick = function() {
-            that._onSubmit();
-        };
+            document.getElementById('imgUrlSubmit').onclick = function() {
+                that._onSubmit(document.getElementById('imgUrlInput').value);
+            };
+        }
 
         this._map
             .on('click', this._cancelCreate, this);
     },
 
-    _onSubmit: function() {
+    _onSubmit: function(url) {
         var bounds = this._tempRect.getBounds(),
             corners = {
                 corners: [
@@ -130,7 +142,6 @@ L.Draw.DistortableImage = L.Draw.Rectangle.extend({
                     bounds.getSouthEast()
                 ]
             },
-            url = $('#imgUrlInput').val(),
             img = new L.DistortableImageOverlay(url, corners);
 
         this._map.removeLayer(this._tempRect);
