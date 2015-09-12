@@ -95,17 +95,13 @@ L.Draw.DistortableImage = L.Draw.Rectangle.extend({
     },
 
     initialize: function (map, options) {
-        console.log('intialized');
         // Save the type so super can fire, need to do this as cannot do this.TYPE :(
         this.type = L.Draw.DistortableImage.TYPE;
 
         this._initialLabelText = L.drawLocal.draw.handlers.distortableimage.tooltip.start;
 
         if (options.createdEventHandler || this.options.createdEventHandler)
-        {
-            console.log('custom createdEventHandler');
             this._createdEventHandler = options.createdEventHandler ? options.createdEventHandler : this.options.createdEventHandler;
-        }
 
         L.Draw.SimpleShape.prototype.initialize.call(this, map, options);
     },
